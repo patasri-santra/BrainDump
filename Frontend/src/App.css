@@ -1,0 +1,144 @@
+/* General Layout */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f6fef6; /* light green-ish background */
+}
+
+/* NAVBAR */
+#navbar {
+  background-color: #ed8787;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+#navbar a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER */
+#footer {
+  background-color: #ed8787;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+
+/* NOTES GRID */
+#notes-container {
+  padding: 3rem 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* NOTE CARD */
+.note-card {
+  background-color: #f9e7f7;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* NOTE BUTTONS */
+.note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.note-actions button {
+  background-color: #f47ea7;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.note-actions button:hover {
+  background-color: #ec82c0;
+}
+
+/* ADD NOTE FORM */
+#add-note-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 1rem; 
+  min-height: 100vh;
+}
+
+#add-note-form {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#add-note-form h2 {
+  text-align: center;
+  color: #f47ea7;
+  margin-bottom: 1.5rem;
+}
+
+#add-note-form label {
+  display: block;
+  font-weight: bold;
+  color: #f47ea7;
+  margin-top: 1rem;
+}
+
+#add-note-form input,
+#add-note-form textarea {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.3rem;
+  border: none;
+  border-bottom: 2px solid #f8bbd0;
+  outline: none;
+  background-color: #fce4ec;
+}
+
+#add-note-form input::placeholder,
+#add-note-form textarea::placeholder {
+  color: #bdbdbd;
+}
+
+#add-note-form button {
+  width: 100%;
+  background-color: #f8bbd0;
+  color: white;
+  padding: 0.75rem;
+  margin-top: 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#add-note-form button:hover {
+  background-color: #ec82c0;
+}
