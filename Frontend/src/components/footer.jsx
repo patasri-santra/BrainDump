@@ -3,7 +3,6 @@ const Footer = () => {
     <footer id="footer">
   <div>
     <strong>BrainDump</strong><br />
-    &copy; 2025 Patasri. All rights reserved.
   </div>
   <div>
     <a href="https://github.com/patasri-santra/BrainDump.git">Source Code</a> | 

@@ -1,21 +1,48 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar';
 import HomePage from './pages/home.page';
 import AddNote from './pages/addNote.page';
 import Footer from './components/footer';
+import LoginSignup from './pages/LoginSignup';
 
 function App() {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
+  const location = useLocation();
+
   return (
     <>
-      <Navbar />
+      {/* Show Navbar only when user is logged in */}
+      {isAuthenticated && <Navbar />}
+
       <div className="p-6">
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/add" element={<AddNote />} />
+          {/* Public route */}
+          <Route
+            path="/"
+            element={
+              isAuthenticated ? <Navigate to="/home" /> : <LoginSignup />
+            }
+          />
+
+          {/* Protected routes */}
+          <Route
+            path="/home"
+            element={
+              isAuthenticated ? <HomePage /> : <Navigate to="/" />
+            }
+          />
+          <Route
+            path="/add"
+            element={
+              isAuthenticated ? <AddNote /> : <Navigate to="/" />
+            }
+          />
         </Routes>
       </div>
-      <Footer />
+
+      {/* Show Footer only when user is logged in */}
+      {isAuthenticated && <Footer />}
     </>
   );
 }

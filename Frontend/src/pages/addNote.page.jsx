@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 function AddNote() {
-  const [form, setForm] = useState({ title: '', content: '' });
+  const [form, setForm] = useState({ title: '', content: '', author: '' });
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -15,7 +15,6 @@ function AddNote() {
       body: JSON.stringify(form),
     });
 
-    // Optional: clear form or redirect to home
     setForm({ title: '', content: '', author: '' });
     alert("Note added!");
   };

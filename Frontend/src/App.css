@@ -142,3 +142,29 @@ body {
 #add-note-form button:hover {
   background-color: #ec82c0;
 }
+
+.fullscreen-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  animation: zoomIn 0.3s ease-in-out;
+  padding: 2rem;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
