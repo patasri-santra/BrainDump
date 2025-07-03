@@ -1,37 +1,48 @@
-import './App.css';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/navbar';
+import Footer from './components/footer';
 import HomePage from './pages/home.page';
 import AddNote from './pages/addNote.page';
-import Footer from './components/footer';
 import LoginSignup from './pages/LoginSignup';
 
 function App() {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  const location = useLocation();
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("isAuthenticated") === "true"
+  );
+
+  useEffect(() => {
+    const handleStorage = () => {
+      setIsAuthenticated(localStorage.getItem("isAuthenticated") === "true");
+    };
+    window.addEventListener("storage", handleStorage);
+    return () => window.removeEventListener("storage", handleStorage);
+  }, []);
+ 
 
   return (
     <>
-      {/* Show Navbar only when user is logged in */}
-      {isAuthenticated && <Navbar />}
+      {isAuthenticated && <Navbar setIsAuthenticated={setIsAuthenticated} />}
 
       <div className="p-6">
         <Routes>
-          {/* Public route */}
+          {/* Login or signup */}
           <Route
             path="/"
             element={
-              isAuthenticated ? <Navigate to="/home" /> : <LoginSignup />
+              isAuthenticated ? <Navigate to="/home" /> : <LoginSignup setIsAuthenticated={setIsAuthenticated} />
             }
           />
 
-          {/* Protected routes */}
+          {/* Home (protected) */}
           <Route
             path="/home"
             element={
               isAuthenticated ? <HomePage /> : <Navigate to="/" />
             }
           />
+
+          {/* Add Note (protected) */}
           <Route
             path="/add"
             element={
@@ -41,7 +52,6 @@ function App() {
         </Routes>
       </div>
 
-      {/* Show Footer only when user is logged in */}
       {isAuthenticated && <Footer />}
     </>
   );

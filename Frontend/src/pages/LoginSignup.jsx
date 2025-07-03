@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function LoginSignup() {
+function LoginSignup({ setIsAuthenticated }) {
   const [isLogin, setIsLogin] = useState(true);
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +21,7 @@ function LoginSignup() {
       if (isLogin) {
         localStorage.setItem("isAuthenticated", "true");
         localStorage.setItem("user", JSON.stringify(res.data.user || { name }));
+        if (setIsAuthenticated) setIsAuthenticated(true);
         alert("Login successful!");
         navigate("/home");
       } else {
@@ -40,9 +41,11 @@ function LoginSignup() {
   return (
     <div className="login-page">
       <div className="login-form-box">
-        <h2 className="login-heading">{isLogin ? "Log In 🔐" : "Sign Up ✍"}</h2>
+        <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+          <div className="login-heading">{isLogin ? "LOGIN" : "SIGN UP"}</div>
+        </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
           <input
             type="text"
             placeholder="Username"
@@ -64,11 +67,15 @@ function LoginSignup() {
           />
 
           <button type="submit" className="login-button" disabled={loading}>
-            {loading ? "Please wait..." : isLogin ? "Log In" : "Sign Up"}
+            {loading ? "Please wait..." : isLogin ? "LOGIN" : "SIGN UP"}
           </button>
         </form>
 
-        <p onClick={() => setIsLogin(!isLogin)} className="login-toggle">
+        <p
+          onClick={() => setIsLogin(!isLogin)}
+          className="login-toggle"
+          style={{ cursor: "pointer" }}
+        >
           {isLogin
             ? "Don't have an account? Sign up"
             : "Already registered? Log in"}

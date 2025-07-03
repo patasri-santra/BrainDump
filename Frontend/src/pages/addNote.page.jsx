@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function AddNote() {
   const [form, setForm] = useState({ title: '', content: '', author: '' });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,6 +19,7 @@ function AddNote() {
 
     setForm({ title: '', content: '', author: '' });
     alert("Note added!");
+    navigate('/home'); // Navigate to home page after adding note
   };
 
   return (
